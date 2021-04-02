@@ -1,12 +1,12 @@
-<!doctype html>
-<html>
-<head>
-  <title>Home page</title>
-  </head>
-  <body>
-    <h1>Home Page!</h1>
-    {% for (x,y) in content %}
-      <p>{{x}} -> {{y}}</p>
-    {% endfor %}
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+  PL Projeto
+{% endblock %}
+
+{% block body %}
+  <h1>Categories</h1>
+  {% for (x,y) in content %}
+    <p><a href="http://127.0.0.1:5000/{{x}}">{{x}}</a> -> {{y}}</p>
+  {% endfor %}
+{% endblock %}

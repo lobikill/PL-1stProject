@@ -1,12 +1,12 @@
-<!doctype html>
-<html>
-<head>
-  <title></title>
-  </head>
-  <body>
-    <h1>{{category}}</h1>
-    {% for data in content %}
-      <p>{{data}}</p>
-    {% endfor %}
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+  PL Projeto
+{% endblock %}
+
+{% block body %}
+  <h1><a href="http://127.0.0.1:5000/">{{category}}</a></h1>
+  {% for data in content %}
+    <p>{{data}}</p>
+  {% endfor %}
+{% endblock %}
