@@ -21,6 +21,9 @@ def getOcurrences():
 
 def processFile(filename):
     f = open(filename, "r")
+    contador = 0
+    inicio = 0
+    fim = 0
     data = ""
     y = ""
     for linha in f:
@@ -29,22 +32,23 @@ def processFile(filename):
             if v.group() == "B":
                 if data != "":
                     if y.group(1) in dataBase:
-                        dataBase[y.group(1)].append(data)
+                        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
                     else:
                         dataBase[y.group(1)] = []
-                        dataBase[y.group(1)].append(data)
-                data = ""
-
-            y = re.search(r'-([a-zA-Z]+)', linha)
-            if v.group() == "B":
+                        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
                 data = (re.search(r'[a-zA-Z0-9]{,}$', linha)).group()
+                inicio = contador
             else:
                 data += (" " + (re.search(r'[a-zA-Z0-9]{,}$', linha)).group())
+                fim = contador
+            y = re.search(r'-([a-zA-Z]+)', linha)
+        contador += 1
+
     if y.group(1) in dataBase:
-        dataBase[y.group(1)].append(data)
+        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
     else:
         dataBase[y.group(1)] = []
-        dataBase[y.group(1)].append(data)
+        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
 
 if __name__ == "__main__":
     processFile("train.txt")
