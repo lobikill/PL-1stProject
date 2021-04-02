@@ -21,7 +21,7 @@ def getOcurrences():
 
 def processFile(filename):
     f = open(filename, "r")
-    contador = 0
+    contador = 1
     inicio = 0
     fim = 0
     data = ""
