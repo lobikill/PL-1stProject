@@ -40,8 +40,13 @@ def processFile(filename):
                 data = (re.search(r'[a-zA-Z0-9]{,}$', linha)).group()
             else:
                 data += (" " + (re.search(r'[a-zA-Z0-9]{,}$', linha)).group())
+    if y.group(1) in dataBase:
+        dataBase[y.group(1)].append(data)
+    else:
+        dataBase[y.group(1)] = []
+        dataBase[y.group(1)].append(data)
 
 if __name__ == "__main__":
     processFile("train.txt")
     getOcurrences()
-    app.run()
+    app.run(debug = True)
