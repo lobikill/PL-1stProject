@@ -6,7 +6,7 @@
 
 {% block body %}
   <h1><a href="http://127.0.0.1:5000/">{{category}}</a></h1>
-  {% for data in content %}
-    <p>{{data}}</p>
+  {% for (data, ocurrence) in content %}
+    <p>{{data}}, em {{ocurrence}} </p>
   {% endfor %}
 {% endblock %}
