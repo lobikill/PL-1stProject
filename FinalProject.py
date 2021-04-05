@@ -51,6 +51,6 @@ def processFile(filename):
         dataBase[y.group(1)].append((data, str(first) + " - " + str(last)))
 
 if __name__ == "__main__":
-    processFile("train.txt")
+    processFile(sys.argv[1])
     getOcurrences()
     app.run(debug = True)
