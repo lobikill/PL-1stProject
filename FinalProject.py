@@ -21,9 +21,9 @@ def getOcurrences():
 
 def processFile(filename):
     f = open(filename, "r")
-    contador = 1
-    inicio = 0
-    fim = 0
+    counter = 1
+    first = 0
+    last = 0
     data = ""
     y = ""
     for linha in f:
@@ -32,23 +32,23 @@ def processFile(filename):
             if v.group() == "B":
                 if data != "":
                     if y.group(1) in dataBase:
-                        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
+                        dataBase[y.group(1)].append((data, str(first) + " - " + str(last)))
                     else:
                         dataBase[y.group(1)] = []
-                        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
+                        dataBase[y.group(1)].append((data, str(first) + " - " + str(last)))
                 data = (re.search(r'[a-zA-Z0-9]{,}$', linha)).group()
-                inicio = contador
+                first = counter
             else:
                 data += (" " + (re.search(r'[a-zA-Z0-9]{,}$', linha)).group())
-                fim = contador
+                last = counter
             y = re.search(r'-([a-zA-Z]+)', linha)
-        contador += 1
+        counter += 1
 
     if y.group(1) in dataBase:
-        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
+        dataBase[y.group(1)].append((data, str(first) + " - " + str(last)))
     else:
         dataBase[y.group(1)] = []
-        dataBase[y.group(1)].append((data, str(inicio) + " - " + str(fim)))
+        dataBase[y.group(1)].append((data, str(first) + " - " + str(last)))
 
 if __name__ == "__main__":
     processFile("train.txt")
